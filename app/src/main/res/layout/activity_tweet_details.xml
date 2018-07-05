@@ -1,38 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:layout_margin="5dp">
+    tools:context=".TweetDetailsActivity">
 
     <ImageView
         android:id="@+id/ivProfile"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
         app:srcCompat="@android:color/black" />
 
     <TextView
         android:id="@+id/tvUsername"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="false"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivProfile"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/tvBody"
-        android:layout_width="318dp"
+        android:layout_width="322dp"
         android:layout_height="wrap_content"
-
         android:layout_below="@+id/tvUsername"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivProfile"
         android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvTimestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView" />
+
+    <ImageButton
+        android:id="@+id/ibFavorite"
+        android:background="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvTimestamp"
+        android:layout_below="@+id/tvBody"
+        android:layout_marginTop="-5dp"
+        app:srcCompat="@drawable/ic_vector_heart_stroke" />
 
     <ImageButton
         android:id="@+id/ibReply"
@@ -41,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/tvUsername"
         android:layout_below="@+id/tvBody"
-        android:layout_marginTop="-1dp"
+        android:layout_marginTop="-5dp"
         app:srcCompat="@drawable/reply" />
 
     <ImageButton
@@ -51,20 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/tvBody"
-        android:layout_marginEnd="142dp"
-        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="141dp"
+        android:layout_marginTop="-5dp"
         app:srcCompat="@drawable/ic_vector_retweet" />
-
-    <ImageButton
-        android:id="@+id/ibFavorite"
-        android:background="@android:color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/tvBody"
-        android:layout_marginEnd="17dp"
-        android:layout_marginTop="-1dp"
-        app:srcCompat="@drawable/ic_vector_heart_stroke" />
-
-
 </RelativeLayout>

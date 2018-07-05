@@ -22,7 +22,7 @@ public class Tweet {
         Tweet tweet = new Tweet();
 
         // extract the values from JSON
-        tweet.body = jsonObject.getString("text");
+        tweet.body = jsonObject.getString("full_text");
         tweet.uid = jsonObject.getLong("id");
         tweet.createdAt = jsonObject.getString("created_at");
 
