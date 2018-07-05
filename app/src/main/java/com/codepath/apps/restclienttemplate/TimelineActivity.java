@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,8 @@ public class TimelineActivity extends AppCompatActivity {
     private ArrayList<Tweet> tweets;
     private RecyclerView rvTweets;
 
+    private SwipeRefreshLayout swipeContainer;
+
 
 
     @Override
@@ -50,7 +53,61 @@ public class TimelineActivity extends AppCompatActivity {
 
         // try to grab data from the twitter api
         populateTimeline();
+
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                // TODO: check this fetchTimelineAsync thing
+                fetchTimelineAsync(0);
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
     }
+
+    private void fetchTimelineAsync(int page) {
+        // Send the network rrgigkrieuddjtjuidhltjurvjidnllevequest to fetch the updated data
+        // `client` here is an instance of Android Async HTTP
+        // getHomeTimeline is an example endpoint.
+        client.getHomeTimeline(new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                tweetAdapter.clear();
+
+                for (int j = 0; j < response.length(); j++)
+                {
+                    Tweet tweet = null;
+                    try {
+                        tweet = Tweet.fromJSON(response.getJSONObject(j));
+                        tweets.add(tweet);
+                        tweetAdapter.notifyItemInserted(tweets.size() - 1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // tweetAdapter.addAll(tweets); this line is only necessary if the loop above is in
+                // a function, since it is not it is unnecessary but TODO: get rid of repeated code
+
+            // Now we call setRefreshing(false) to signal refresh has finished
+                swipeContainer.setRefreshing(false);
+            }
+
+            public void onFailure(Throwable e) {
+                Log.d("DEBUG", "Fetch timeline error: " + e.toString());
+            }
+        });
+    }
+
 
 
     @Override
