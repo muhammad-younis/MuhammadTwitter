@@ -16,6 +16,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -66,21 +67,17 @@ public class TimelineActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        // super.onActivityResult(requestCode, resultCode, data);
         // EDIT_REQUEST_CODE defined with constants
         if (resultCode == RESULT_OK) {
             // extract updated item value from result extras
-            String updatedItem = data.getExtras().getString(ITEM_TEXT);
+            Tweet tweet = (Tweet) Parcels.unwrap(data.getParcelableExtra("tweet"));
             // get the position of the item which was edited
-            int position = data.getExtras().getInt(ITEM_POSITION, 0);
-            // update the model with the new item text at the edited position
-            items.set(position, updatedItem);
-            // notify the adapter the model changed
-            itemsAdapter.notifyDataSetChanged();
-            // Store the updated items back to disk
-            writeItems();
+            tweets.add(0,tweet);
+            tweetAdapter.notifyItemInserted(0); // we want our tweet to show up at the top
+            rvTweets.scrollToPosition(0); // want to go to the top
             // notify the user the operation completed OK
-            Toast.makeText(this, "Item updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Tweet uploaded!", Toast.LENGTH_SHORT).show();
         }
     }
 

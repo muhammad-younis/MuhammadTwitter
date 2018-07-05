@@ -40,8 +40,6 @@ public class ComposeActivity extends AppCompatActivity {
 
         // send network request
         sendNetworkRequest(text);
-        setResult(RESULT_OK, data); // set result code and bundle data for response
-        finish(); // closes the edit activity, passes intent back to main
     }
 
     public void sendNetworkRequest(String tweet)
@@ -54,7 +52,13 @@ public class ComposeActivity extends AppCompatActivity {
                     tweet = Tweet.fromJSON(response);
                     Intent intent = new Intent(ComposeActivity.this, TimelineActivity.class);
                     intent.putExtra("tweet", Parcels.wrap(tweet));
-                    return;
+                    /*
+                     * NOT: The setResult NEEDS to be in the same function as the intent and the
+                     * finish, this is probably due to scope because otherwise the resultCode is
+                     * reset to zero.
+                     */
+                    setResult(RESULT_OK, intent);
+                    finish();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
