@@ -36,7 +36,7 @@ public class TweetDetailsActivity extends AppCompatActivity {
         // set all the tedxt attributes
         tvUsername.setText(tweet.user.name); ;
         tvBody.setText(tweet.body);
-        tvTimestamp.setText("00:00");
+        tvTimestamp.setText(tweet.createdAt);
 
         Glide.with(getApplicationContext())
                 .load(tweet.user.profileImageUrl)
