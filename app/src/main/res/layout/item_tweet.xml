@@ -42,7 +42,6 @@
         android:layout_alignStart="@+id/tvUsername"
         android:layout_below="@+id/tvBody"
         android:layout_marginTop="-1dp"
-        android:onClick="onClickReply"
         app:srcCompat="@drawable/reply" />
 
     <ImageButton

@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -64,7 +63,7 @@ public class TimelineActivity extends AppCompatActivity {
                 // Your code to refresh the list here.
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
-                // TODO: check this fetchTimelineAsync thing
+
                 fetchTimelineAsync(0);
             }
         });
@@ -107,15 +106,6 @@ public class TimelineActivity extends AppCompatActivity {
                 Log.d("DEBUG", "Fetch timeline error: " + e.toString());
             }
         });
-    }
-
-    public void onClickReply(View v)
-    {
-        Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
-        // TODO: get the actual user @ for this
-        String replying_to = "@example_person";
-        i.putExtra("replying_to", replying_to);
-        startActivityForResult(i, 404); // brings up the second activity
     }
 
 

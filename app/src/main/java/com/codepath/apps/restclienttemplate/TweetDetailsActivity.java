@@ -18,6 +18,8 @@ public class TweetDetailsActivity extends AppCompatActivity {
     TextView tvBody;
     TextView tvTimestamp;
     ImageView ivProfile;
+    TextView tvRtCount;
+    TextView tvFavCount;
 
 
     @Override
@@ -28,6 +30,8 @@ public class TweetDetailsActivity extends AppCompatActivity {
         tvBody = (TextView) findViewById(R.id.tvBody);
         tvTimestamp = (TextView) findViewById(R.id.tvTimestamp);
         ivProfile = (ImageView) findViewById(R.id.ivProfile);
+        tvRtCount = (TextView) findViewById(R.id.tvRtCount);
+        tvFavCount = (TextView) findViewById(R.id.tvFavCount);
 
 
         // unwrap the movie passed in via intent, using its simple name as a key
@@ -37,6 +41,9 @@ public class TweetDetailsActivity extends AppCompatActivity {
         tvUsername.setText(tweet.user.name); ;
         tvBody.setText(tweet.body);
         tvTimestamp.setText(tweet.createdAt);
+
+        tvRtCount.setText(Long.toString(tweet.num_retweets));
+        tvFavCount.setText(Long.toString(tweet.num_likes));
 
         Glide.with(getApplicationContext())
                 .load(tweet.user.profileImageUrl)

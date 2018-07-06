@@ -17,7 +17,7 @@ import com.loopj.android.http.RequestParams;
  * Key and Secret are provided by the developer site for the given API i.e dev.twitter.com
  * Add methods for each relevant endpoint in the API.
  * 
- * NOTE: You may want to rename this object based on the service i.e TwitterClient or FlickrClient
+ * NOTE: You may want to rename this object based on the service i.e TwitterClient
  * 
  */
 public class TwitterClient extends OAuthBaseClient {
@@ -48,7 +48,7 @@ public class TwitterClient extends OAuthBaseClient {
 		RequestParams params = new RequestParams();
 		params.put("count", 25);
 		params.put("since_id", 1);
-		params.put("tweet_mode", "extended");
+		// params.put("tweet_mode", "extended");
 		client.get(apiUrl, params, handler);
 	}
 

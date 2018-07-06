@@ -80,7 +80,7 @@ public class ComposeActivity extends AppCompatActivity {
                 Tweet tweet = new Tweet();
                 try {
                     tweet = Tweet.fromJSON(response);
-                    Intent intent = new Intent(ComposeActivity.this, TimelineActivity.class);
+                    Intent intent = new Intent();
                     intent.putExtra("tweet", Parcels.wrap(tweet));
                     /*
                      * NOT: The setResult NEEDS to be in the same function as the intent and the

@@ -1,5 +1,6 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,6 +58,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
     }
 
+
+
     // Clean all elements of the recycler
     public void clear() {
         mTweets.clear();
@@ -78,6 +82,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         public TextView tvUsername;
         public TextView tvBody;
         public TextView tvTimestamp;
+        public ImageButton ibReply;
 
         public ViewHolder(View itemView)
         {
@@ -86,8 +91,29 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
             tvUsername = (TextView) itemView.findViewById(R.id.tvUsername);
             tvBody = (TextView) itemView.findViewById(R.id.tvBody);
             tvTimestamp = (TextView) itemView.findViewById(R.id.tvTimestamp);
+            ibReply = (ImageButton) itemView.findViewById(R.id.ibReply);
+
+
 
             itemView.setOnClickListener(this);
+
+            ibReply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, ComposeActivity.class);
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        // get the movie at the position, this won't work if the class is static
+                        Tweet tweet = mTweets.get(position);
+                        // create intent for the new activity
+                        Intent intent = new Intent(context, ComposeActivity.class);
+                        // serialize the movie using parceler, use its short name as a key
+                        intent.putExtra("replying_to", "@" + tweet.user.screenName);
+                        // show the activity
+                        ((Activity) context).startActivityForResult(intent, 404);
+                    }
+                }
+            });
         }
 
         @Override
@@ -105,8 +131,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
                 context.startActivity(intent);
             }
         }
-    }
 
+    }
 
 
     @Override

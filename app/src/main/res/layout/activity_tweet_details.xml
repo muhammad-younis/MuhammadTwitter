@@ -51,12 +51,12 @@
 
     <ImageButton
         android:id="@+id/ibFavorite"
-        android:background="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvTimestamp"
         android:layout_below="@+id/tvBody"
         android:layout_marginTop="-5dp"
+        android:layout_toStartOf="@+id/tvTimestamp"
+        android:background="@android:color/white"
         app:srcCompat="@drawable/ic_vector_heart_stroke" />
 
     <ImageButton
@@ -71,12 +71,31 @@
 
     <ImageButton
         android:id="@+id/ibRetweet"
-        android:background="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/tvBody"
-        android:layout_marginEnd="141dp"
+        android:layout_marginEnd="167dp"
         android:layout_marginTop="-5dp"
+        android:background="@android:color/white"
         app:srcCompat="@drawable/ic_vector_retweet" />
+
+    <TextView
+        android:id="@+id/tvRtCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBody"
+        android:layout_marginStart="-167dp"
+        android:layout_marginTop="-5dp"
+        android:layout_toEndOf="@+id/ibRetweet"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvFavCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvTimestamp"
+        android:layout_below="@+id/tvBody"
+        android:layout_marginTop="-5dp"
+        android:text="TextView" />
 </RelativeLayout>

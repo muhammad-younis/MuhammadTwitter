@@ -18,6 +18,9 @@ public class Tweet {
     public User user;
     public String createdAt;
 
+    public long num_retweets;
+    public long num_likes;
+
 
     public Tweet(){
     }
@@ -28,9 +31,11 @@ public class Tweet {
         Tweet tweet = new Tweet();
 
         // extract the values from JSON
-        tweet.body = jsonObject.getString("full_text");
+        tweet.body = jsonObject.getString("text");
         tweet.uid = jsonObject.getLong("id");
         String createdAt = jsonObject.getString("created_at");
+        tweet.num_retweets = jsonObject.getLong("retweet_count");
+        tweet.num_likes = jsonObject.getLong("favorite_count");
         tweet.createdAt = getRelativeTimeAgo(createdAt);
 
 
