@@ -64,6 +64,8 @@ public class ComposeActivity extends AppCompatActivity {
     }
 
 
+
+
     public void sendNetworkRequest(String tweet)
     {
         client.sendTweet(tweet, new JsonHttpResponseHandler(){
