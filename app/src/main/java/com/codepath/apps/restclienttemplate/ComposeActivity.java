@@ -34,6 +34,12 @@ public class ComposeActivity extends AppCompatActivity {
         etTweetText = (EditText) findViewById(R.id.etTweetText);
         tvCharacterCount = (TextView) findViewById(R.id.tvCharacterCount);
         client = TwitterApp.getRestClient(this);
+        Intent intent = getIntent();
+        String replying_to = intent.getExtras().getString("replying_to");
+        if (replying_to != "")
+        {
+            etTweetText.setText(replying_to);
+        }
 
         // adds listener to watch for change
         etTweetText.addTextChangedListener(mTextEditorWatcher);

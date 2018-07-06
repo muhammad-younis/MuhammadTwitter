@@ -92,7 +92,6 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
         @Override
         public void onClick(View v) {
-            // TODO: add this function so we can implement the onclick nonsense
             int position = getAdapterPosition();
             // make sure the position is valid, i.e. actually exists in the view
             if (position != RecyclerView.NO_POSITION) {

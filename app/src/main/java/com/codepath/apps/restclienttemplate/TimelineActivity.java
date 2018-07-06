@@ -111,7 +111,11 @@ public class TimelineActivity extends AppCompatActivity {
 
     public void onClickReply(View v)
     {
-        Toast.makeText(this, "Replying not implemented yet", Toast.LENGTH_LONG).show();
+        Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
+        // TODO: get the actual user @ for this
+        String replying_to = "@example_person";
+        i.putExtra("replying_to", replying_to);
+        startActivityForResult(i, 404); // brings up the second activity
     }
 
 
@@ -124,6 +128,8 @@ public class TimelineActivity extends AppCompatActivity {
 
     public void onComposeAction(MenuItem mi) {
         Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
+        String replying_to = "";
+        i.putExtra("replying_to", replying_to);
         startActivityForResult(i, 404); // brings up the second activity
     }
 
